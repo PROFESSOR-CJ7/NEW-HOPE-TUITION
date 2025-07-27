@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # 2. Security
 SECRET_KEY = 'tb*@)c_=fu_wt48#5&oizm1--joz!v*ph57h5gyoz$yz#69wt_'
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'newhope-backend.onrender.com']
 
 # 3. Installed apps
 INSTALLED_APPS = [
