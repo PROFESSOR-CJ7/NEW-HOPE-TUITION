@@ -1,29 +1,24 @@
-"""
-URL configuration for newhope_backend project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("""
+        <h2>🎓 Welcome to NewHope Tuition API</h2>
+        <p>This API powers SMS-based tuition management for parents and admins.</p>
+        <ul>
+            <li><a href="/admin/">Admin Panel</a></li>
+            <li><a href="/api/auth/">Authentication Endpoints</a></li>
+            <li><a href="/api/tuition/students/">Student Management</a></li>
+            <li><a href="/api/tuition/payments/">Payment Records</a></li>
+            <li><a href="/api/tuition/sms/callback/">SMS Callback Endpoint</a></li>
+        </ul>
+        <p>© NewHope Backend | Powered by Django 💻</p>
+    """, content_type="text/html")
 
 urlpatterns = [
-    # Admin site
+    path('', home),  # Homepage on root URL
     path('admin/', admin.site.urls),
-
-    # Authentication endpoints
     path('api/auth/', include('accounts.urls')),
-
-    # Tuition endpoints (SMS callback, students, payments…)
     path('api/tuition/', include('tuition.urls')),
 ]
